@@ -9,6 +9,7 @@ import AdminDashboard from "./Admin_panel/AdminDashboard"
 function App() {
 const [isOpen , setIsOpen] = useState(false)
 const [isLogin , setIsLogin] = useState(false)
+const [isAdmin , setIsAdmin] = useState(false)
 
 let onClose = ()=>{
   setIsOpen(false)
@@ -16,16 +17,25 @@ let onClose = ()=>{
 
   return (
     <>
-      {/* {
-        isLogin && <Login setIsLogin={setIsLogin}/>
-      }
-      <Navbar isOpen={isOpen} setIsOpen={setIsOpen} setIsLogin={setIsLogin}/>
-      <Hero/>
-      <TrialModal isOpen={isOpen} setIsOpen={setIsOpen} onClose={onClose}/>
-      <Courses isOpen={isOpen} setIsOpen={setIsOpen} onClose={onClose}/>
-       */}
+      
+      
     
-        <AdminDashboard/>
+    {isAdmin ? (
+        <AdminDashboard setIsAdmin={setIsAdmin} />
+      ) : (
+        <>
+          {isLogin ? (
+            <Login setIsLogin={setIsLogin} setIsAdmin={setIsAdmin}/>
+          ) : (
+            <>
+              <Navbar isOpen={isOpen} setIsOpen={setIsOpen} setIsLogin={setIsLogin} />
+              <Hero setIsOpen={setIsOpen} />
+              <TrialModal isOpen={isOpen} setIsOpen={setIsOpen} onClose={onClose} />
+              <Courses isOpen={isOpen} setIsOpen={setIsOpen} onClose={onClose} />
+            </>
+          )}
+        </>
+      )}
 
     </>
   )

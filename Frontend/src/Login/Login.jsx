@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-export default function Login({ setIsLogin }) {
+export default function Login({ setIsLogin, setIsAdmin }) {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -14,23 +14,27 @@ export default function Login({ setIsLogin }) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
-    setMessage('');
+    // setLoading(true);
+    // setMessage('');
 
-    try {
-      const response = await axios.post('http://localhost:5000/api/login', formData);
-      
-      if (response.data.success) {
-        setMessage('Login successful!');
-      }
-    } catch (error) {
-      console.error('Login error:', error);
-      setMessage(error.response?.data?.error || 'Invalid email or password.');
-    } finally {
-      setLoading(false);
+    if(formData.email == 'abc@gmail.com' && formData.password == '1234'){
+      setIsAdmin(true)
     }
+
+    // try {
+    //   const response = await axios.post('http://localhost:5000/api/login', formData);
+      
+    //   if (response.data.success) {
+    //     setMessage('Login successful!');
+    //   }
+    // } catch (error) {
+    //   console.error('Login error:', error);
+    //   setMessage(error.response?.data?.error || 'Invalid email or password.');
+    // } finally {
+    //   setLoading(false);
+    // }
   };
 
   return (
