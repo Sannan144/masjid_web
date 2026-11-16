@@ -135,9 +135,9 @@ export default function Navbar({ isOpen, setIsOpen, setIsLogin }) {
           ))}
           
           <div className="pt-4 flex flex-col gap-3">
-            <a href="#login" className="w-full text-center font-bold text-slate-700 border border-slate-200 py-3 rounded-xl hover:bg-slate-50 transition-colors">
+            <button onClick={()=> setIsLogin(true)} className="w-full text-center font-bold text-slate-700 border border-slate-200 py-3 rounded-xl hover:bg-slate-50 transition-colors">
               Sign In
-            </a>
+            </button>
             <button onClick={() => setIsOpen(true)} className="w-full text-center font-bold bg-emerald-600 text-white py-3.5 rounded-xl shadow-lg shadow-emerald-600/20 hover:bg-emerald-700 transition-colors cursor-pointer">
               Book Free Trial
             </button>
